@@ -1,0 +1,131 @@
+
+.banner {
+    padding: 25px;
+}
+
+.acordion-body {
+    background-color: #333333;
+    height: 100%;
+    text-align: center;
+    /* display: flex; */
+}
+
+.list-group-flush:nth-of-type(odd) .list-group-item:nth-of-type(odd) {
+    background-color: #626262;
+    color: #F1F1F1;
+}
+
+.list-group-flush:nth-of-type(even) .list-group-item:nth-of-type(even)  {
+    background-color: #3E3E3E;
+    color: #F1F1F1;
+}
+
+
+.list-group-item {
+    padding: 5px 10px;
+    background-color: #3E3E3E;
+    color: #F1F1F1;
+}
+
+.accordion>.card .card-header {
+    background: #2190BD;
+    color: white;
+    padding: 0;
+  }
+
+  .link-toggle {
+      text-decoration: none;
+      letter-spacing: 0;
+    color: #F1F1F1;
+  }
+
+  .link-toggle:hover {
+      color: #F1F1F1;
+      text-decoration: none;
+  }
+
+
+  .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+      width: 100px;
+      text-align: center;
+  }
+
+  .nav-tabs .nav-link {
+      width: 100px;
+      text-align: center;
+  }
+
+  .accorting-container {
+    background: #626262;
+  }
+
+  .according_filter {
+      border-radius: 50%;
+      padding: 10px;
+      width: 50px;
+      height: 50px;
+      font-weight: bold;
+      color: #F1F1F1;
+      background-color: #00000029;
+      
+  }
+
+
+  .according_filter:hover {
+      background-color: transparent;
+  }
+
+  .accord_btns {
+      background-color: #626262;
+  }
+
+  .banner-header {
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+
+  }
+
+  .card {
+      border: none;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+  } 
+
+
+  .accordion>.card:not(:first-of-type):not(:last-of-type) {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+
+
+  .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+    color: #fff;
+    background-color:#626262;
+    border: none;
+}
+
+.nav-tabs .nav-item.show .nav-link:hover, .nav-tabs .nav-link.active {
+    color: #fff;
+    background-color:#626262;
+    border-bottom: 2px solid #fff;
+}
+
+.list-btns {
+    width: 27px;
+    height: 27px;
+    padding: 0;
+    background-color: transparent;
+    border-radius: 50%;
+}
+
+.list-btns:hover {
+    background-color: transparent;
+
+}
+.w-100{
+    justify-content: space-around;
+
+}
+.flex{
+    /* display: flex; */
+}
