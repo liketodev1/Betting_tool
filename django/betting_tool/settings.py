@@ -25,7 +25,7 @@ SECRET_KEY = '6%pkp=&s%9r443ht$4)q@g_m=c@#yv6vf7%y9^23wf-8!ei^e@'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['freelancedeveloper.site']
 
 
 # Application definition
