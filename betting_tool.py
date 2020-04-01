@@ -135,7 +135,7 @@ def main():
     final_scores = join_dictionaries([betstars_scores, eurobet_scores, betflag_scores, bet365_scores,
         lottomatica_scores, sport888_scores])
 
-    with open('result', "w") as res:
+    with open('django/result', "w") as res:
         json.dump(final_scores, res)
 
     # Dump all scores in to the DB.

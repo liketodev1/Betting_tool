@@ -25,7 +25,7 @@ SECRET_KEY = '6%pkp=&s%9r443ht$4)q@g_m=c@#yv6vf7%y9^23wf-8!ei^e@'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['freelancedeveloper.site']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -78,12 +78,12 @@ WSGI_APPLICATION = 'betting_tool.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-#DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.sqlite3',
-#        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#    }
-#}
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
+}
 
 
 # Password validation

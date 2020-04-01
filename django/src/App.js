@@ -32,14 +32,14 @@ function App() {
       <BrowserRouter>
         <Header />
         <div className="main">
-          <Route path="/" component={Main} exact/>
-          <Route path="/home" component={Main} />
-          <Route path="/about_us" component={AboutUs} />
-          <Route path="/prediction" component={Prediction} />
-          <Route path="/tv_info" component={TVInfo} />
-          <Route path="/faq" component={Faq} />
-          <Route path="/login_in" component={Login} />
-          <Route path="/register" component={Register} />
+          <Route path={`${process.env.PUBLIC_URL}/`} component={Main} />
+          <Route path={`${process.env.PUBLIC_URL}/home`} component={Main} />
+          <Route path={`${process.env.PUBLIC_URL}/about_us`} component={AboutUs}/>
+          <Route path={`${process.env.PUBLIC_URL}/prediction`} component={Prediction} />
+          <Route path={`${process.env.PUBLIC_URL}/tv_info`} component={TVInfo} />
+          <Route path={`${process.env.PUBLIC_URL}/faq`} component={Faq} />
+          <Route path={`${process.env.PUBLIC_URL}/login_in`} component={Login} />
+          <Route path={`${process.env.PUBLIC_URL}/register`} component={Register} />
         </div>
         <Footer />
       </BrowserRouter>

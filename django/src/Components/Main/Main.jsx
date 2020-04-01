@@ -11,7 +11,8 @@ import {
 
 
 const Main = () => {
-
+    console.log('main');
+    
     return (
         <div className="main-container py-5">
             <div className="d-flex justify-content-center">

@@ -23,6 +23,11 @@ import {
 }  from 'react-bootstrap'
 
 
+
+
+
+
+
 const Header = () => {
     return (
         <div className="header">
@@ -40,39 +45,59 @@ const Header = () => {
                     <Nav className="justify-content-center w-75" >
                         <Nav.Item className="mx-2">
                             <Nav.Link>
-                                <Link to="/home" className="text-white">Home</Link>
+                                <Link className=" font-16 text-white" to={{
+                                    pathname: `${process.env.PUBLIC_URL}/home `
+                                }}>Home
+                                </Link >
+                            </Nav.Link>
+                        
+                        </Nav.Item>
+                        <Nav.Item className="mx-2">
+                            <Nav.Link>
+                                <Link className="font-16 text-white " to={{
+                                    pathname: `${process.env.PUBLIC_URL}/about_us `
+                                }}>About Us
+                                </Link >
                             </Nav.Link>
                         </Nav.Item>
                         <Nav.Item className="mx-2">
                             <Nav.Link>
-                                <Link to="/about_us" className="font-16 text-white " >About Us</Link>
+                                <Link className="font-16 text-white " to={{
+                                pathname: `${process.env.PUBLIC_URL}/prediction`
+                                }}>Prediction
+                                </Link >
                             </Nav.Link>
                         </Nav.Item>
                         <Nav.Item className="mx-2">
                             <Nav.Link>
-                                <Link to="/prediction" className="font-16 text-white" >Prediction</Link>
+                                <Link className="font-16 text-white " to={{
+                                pathname: `${process.env.PUBLIC_URL}/tv_info`
+                                }}>TV Info
+                                </Link >
                             </Nav.Link>
                         </Nav.Item>
                         <Nav.Item className="mx-2">
                             <Nav.Link>
-                                <Link to="/tv_info" className="font-16 text-white" >TV Info</Link>
-                            </Nav.Link>
-                        </Nav.Item>
-                        <Nav.Item className="mx-2">
-                            <Nav.Link>
-                                <Link to="/faq" className="font-16 text-white" >FAQ</Link>
+                                <Link className="font-16 text-white " to={{
+                                pathname: `${process.env.PUBLIC_URL}/faq`
+                                }}>FAQ
+                                </Link >
                             </Nav.Link>
                         </Nav.Item>
                     </Nav>
                     <Nav className="justify-content-end w-25">
                         <Nav.Link className="mx-2">
-                            <Link to="/login_in" className="text-white">
+                            <Link className="text-white" to={{
+                                pathname: `${process.env.PUBLIC_URL}/login_in` 
+                                }}>
                                 <img src={Login} alt="LOGIN"/>
-                                <span className="font-16 text-white ml-2">Log In</span>
+                                <span className="font-16 text-white ml-2">Log </span>
                             </Link>
                         </Nav.Link>
                         <Nav.Link className="mx-2">
-                            <Link to="/register" className="text-white">
+                            <Link className="text-white" to={{
+                                pathname: `${process.env.PUBLIC_URL}/register` 
+                                }}>
                                 <img src={Register} alt="REGISTER"/>
                                 <span className="font-16 text-white ml-2">Register</span>
                             </Link>

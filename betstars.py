@@ -47,6 +47,8 @@ def get_betstars_content(url, country, tournament):
         print_log_msg('Open all countries section for clicking on current country(given from config)', Log.DEBUG.value)
         all_countires = browser.find_elements_by_xpath("//div[@class='competitionListItem listItem']")
         for country_name in all_countires:
+            print (country_name.text)
+            print (country.upper())
             if country_name.text == country.upper():
                 country_name.click()
                 found_country = country_name
@@ -54,7 +56,6 @@ def get_betstars_content(url, country, tournament):
         print_log_msg('Open all tournaments section for clicking on current tournament(given from config)',
                 Log.DEBUG.value)
         time.sleep(1)
-
         for li_tag in found_country.find_elements_by_tag_name('li'):
             if li_tag.text == country + ' - ' + tournament:
                 score_url = li_tag.find_element_by_tag_name('a').get_attribute('href')
