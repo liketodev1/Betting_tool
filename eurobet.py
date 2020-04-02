@@ -109,7 +109,7 @@ def create_scores_dict(url, content):
     for each_row in content:
         row = each_row.split('\n')
         if len(row) < 10:
-            teams = row[1].replace('-','- ').lower()
+            teams = row[2].replace('-','- ').lower()
             scores = {url : row[3:6]}
         else:
             teams = row[3].replace('-','- ').lower()

@@ -108,12 +108,12 @@ const Banner = () => {
                             </Card.Header>             
                             <Accordion.Collapse eventKey="0" className="accorting-container">
                            
-                                        <Card.Body className="acordion-body"> 
-                                                 <ListGroup variant="flush" className="acordion-body">
+                                        <Card.Body className="acordion-body">
+                                                <ListGroup variant="flush" className="acordion-body">
                                                     <>
                                                         {posts && Object.keys(posts).map((el,index) => 
-                                                        <div className= "displayflex"> 
-                                                            <div  className="divss"key={el} onClick={() => onClickGame(index)} style={{ cursor:"pointer" ,backgroundColor : index & 1 ? "#626262" : "#3E3E3E"}}>{el}</div>
+                                                        <>
+                                                            <div key={el} onClick={() => onClickGame(index)} style={{ cursor:"pointer" ,backgroundColor : index & 1 ? "#626262" : "#3E3E3E"}}>{el}</div>
                                                             {activeIndex === index && showUrls ? 
                                                                 <div>{posts[el].map((el, urlObjIndex) => (
                                                                     <div>{Object.keys(el).map((url, urlIndex) => {
@@ -121,7 +121,7 @@ const Banner = () => {
 
                                                                         return (
                                                                             <>
-                                                                                <div key={url} onClick={() => onClickUrl(urlIndex, urlObjIndex)} style={{cursor:"pointer"}}>{url}</div>
+                                                                                <div key={url} onClick={() => onClickUrl(urlIndex, urlObjIndex)} >{url}</div>
                                                                                 {urlObjIndex === activeUrlObjIndex && activeUrlIndex === urlIndex && showCoeficents ?
                                                                                     <div> 
                                                                                         {el[url].map(score => (          
@@ -134,7 +134,7 @@ const Banner = () => {
                                                                     }
                                                                     )}</div>
                                                                 ))}</div> : null}
-                                                         </div>   
+                                                         </>   
                                                             )}
                                                             
                                                     </>
