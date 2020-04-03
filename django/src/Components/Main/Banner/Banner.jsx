@@ -40,9 +40,9 @@ const Banner = () => {
 
     const getPosts = useCallback(async () => {
         try {
-            const fetchPosts = await fetch(' http://freelancedeveloper.site:8001');
+            const fetchPosts = await fetch('http://freelancedeveloper.site:8001/api');
             const res = await fetchPosts.json();
-    
+
             dispatch({ type: SET_POSTS, posts: JSON.parse(res.data) });
         } catch (err) {
             console.log(err.message)
@@ -51,7 +51,7 @@ const Banner = () => {
 
     useEffect(() => {
         getPosts();
-    }, [])        
+    }, [])
 
     useEffect(() => {
         console.log(posts)
@@ -61,7 +61,7 @@ const Banner = () => {
         setActiveIndex(index);
         setShowUrls(!showUrls)
     }
-    
+
     const onClickUrl = (urlIndex, urlObjIndex) => {
         setActiveUrlIndex(urlIndex);
         setActiveUrlObjIndex(urlObjIndex);
@@ -73,31 +73,31 @@ const Banner = () => {
         <div className="banner">
             <Tab.Container>
 
-            
+
             <Tabs defaultActiveKey="start" transition={false} id="noanim-tab-example">
                 <Tab eventKey="start" title="Finished" className>
                     <Accordion defaultActiveKey="0">
-                        
+
 <Card className="py-4 px-3 accord_btns">
                             <ButtonToolbar>
                                     <Button className="according_filter mx-1" variant="light">
                                         <span className="text-white">ALL</span>
                                     </Button>
                                     <Button className="according_filter mx-1" variant="light">
-                                        <span className="text-primary">A</span>  
+                                        <span className="text-primary">A</span>
                                     </Button>
                                     <Button className="according_filter mx-1" variant="light">
-                                        <span className="text-success">B</span> 
+                                        <span className="text-success">B</span>
                                     </Button>
                                     <Button className="according_filter mx-1" variant="light">
-                                        <span className="text-danger">C</span>  
+                                        <span className="text-danger">C</span>
                                     </Button>
                                     <Button className="according_filter mx-1" variant="light">
-                                        <span className="text-warning">D</span> 
+                                        <span className="text-warning">D</span>
                                     </Button>
                             </ButtonToolbar>
                         </Card>
-                        <Card>                        
+                        <Card>
                             <Card.Header className="banner-header">
                                 <Accordion.Toggle as={Button} variant="link" eventKey="0" className="according">
                                     <div className="text-white link-toggle">
@@ -105,53 +105,53 @@ const Banner = () => {
                                         <span className="ml-4">ITALY-SERIE B</span>
                                     </div>
                                 </Accordion.Toggle>
-                            </Card.Header>             
+                            </Card.Header>
                             <Accordion.Collapse eventKey="0" className="accorting-container">
-                           
-                                        <Card.Body className="acordion-body"> 
-                                                 <ListGroup variant="flush" className="acordion-body">
+
+                                        <Card.Body className="acordion-body">
+                                                <ListGroup variant="flush" className="acordion-body">
                                                     <>
-                                                        {posts && Object.keys(posts).map((el,index) => 
-                                                        <div className= "displayflex"> 
-                                                            <div  className="divss"key={el} onClick={() => onClickGame(index)} style={{ cursor:"pointer" ,backgroundColor : index & 1 ? "#626262" : "#3E3E3E"}}>{el}</div>
-                                                            {activeIndex === index && showUrls ? 
+                                                        {posts && Object.keys(posts).map((el,index) =>
+                                                        <>
+                                                            <div key={el} onClick={() => onClickGame(index)} style={{ cursor:"pointer" ,backgroundColor : index & 1 ? "#626262" : "#3E3E3E"}}>{el}</div>
+                                                            {activeIndex === index && showUrls ?
                                                                 <div>{posts[el].map((el, urlObjIndex) => (
                                                                     <div>{Object.keys(el).map((url, urlIndex) => {
-                                                        
+
 
                                                                         return (
                                                                             <>
-                                                                                <div key={url} onClick={() => onClickUrl(urlIndex, urlObjIndex)} style={{cursor:"pointer"}}>{url}</div>
+                                                                                <div key={url} onClick={() => onClickUrl(urlIndex, urlObjIndex)} >{url}</div>
                                                                                 {urlObjIndex === activeUrlObjIndex && activeUrlIndex === urlIndex && showCoeficents ?
-                                                                                    <div> 
-                                                                                        {el[url].map(score => (          
+                                                                                    <div>
+                                                                                        {el[url].map(score => (
                                                                                             <div key={score}>{score}</div>
-                                                                                        ))} 
+                                                                                        ))}
                                                                                     </div> : null}
                                                                                 </>
                                                                         )
-                                                            
+
                                                                     }
                                                                     )}</div>
                                                                 ))}</div> : null}
-                                                         </div>   
+                                                         </>
                                                             )}
-                                                            
+
                                                     </>
 
                                                 </ListGroup>
-                    
+
                                         </Card.Body>
 
-                                       
-                                
-                                
 
 
 
 
 
-                                
+
+
+
+
 
 
 
@@ -188,10 +188,10 @@ const Banner = () => {
                                 <ListGroup variant="flush" className="acordion-body">
                                                     <ListGroup.Item>
                                                         <div className="w-100 d-flex">
-                                                            <div className="w-5">             
+                                                            <div className="w-5">
                                                                 <Button className="list-btns padding-none" variant="light">
-                                                                    <span className="">FT</span> 
-                                                                </Button>     
+                                                                    <span className="">FT</span>
+                                                                </Button>
                                                             </div>
                                                             <div className="w-40">
                                                                 <p className="text-white text-center mb-0">Central Norte</p>
@@ -208,17 +208,17 @@ const Banner = () => {
                                                             </div>
                                                             <div className="w-5">
                                                                 <Button className="list-btns" variant="light">
-                                                                    <span className="text-success">B</span> 
+                                                                    <span className="text-success">B</span>
                                                                 </Button>
                                                             </div>
                                                         </div>
                                                     </ListGroup.Item>
                                                     <ListGroup.Item>
                                                     <div className="w-100 d-flex">
-                                                            <div className="w-5">             
+                                                            <div className="w-5">
                                                                 <Button className="list-btns padding-none" variant="light">
-                                                                    <span className="">FT</span> 
-                                                                </Button>     
+                                                                    <span className="">FT</span>
+                                                                </Button>
                                                             </div>
                                                             <div className="w-40">
                                                                 <p className="text-white text-center mb-0">Crucero del Norte</p>
@@ -235,17 +235,17 @@ const Banner = () => {
                                                             </div>
                                                             <div className="w-5">
                                                                 <Button className="list-btns" variant="light">
-                                                                    <span className="text-success">B</span> 
+                                                                    <span className="text-success">B</span>
                                                                 </Button>
                                                             </div>
                                                         </div>
                                                     </ListGroup.Item>
                                                     <ListGroup.Item>
                                                     <div className="w-100 d-flex">
-                                                            <div className="w-5">             
+                                                            <div className="w-5">
                                                                 <Button className="list-btns padding-none" variant="light">
-                                                                    <span className="">FT</span> 
-                                                                </Button>     
+                                                                    <span className="">FT</span>
+                                                                </Button>
                                                             </div>
                                                             <div className="w-40">
                                                                 <p className="text-white text-center mb-0">Boca Unidos</p>
@@ -262,17 +262,17 @@ const Banner = () => {
                                                             </div>
                                                             <div className="w-5">
                                                                 <Button className="list-btns" variant="light">
-                                                                    <span className="text-success">B</span> 
+                                                                    <span className="text-success">B</span>
                                                                 </Button>
                                                             </div>
                                                         </div>
                                                     </ListGroup.Item>
                                                     <ListGroup.Item>
                                                     <div className="w-100 d-flex">
-                                                            <div className="w-5">             
+                                                            <div className="w-5">
                                                                 <Button className="list-btns padding-none" variant="light">
-                                                                    <span className="">FT</span> 
-                                                                </Button>     
+                                                                    <span className="">FT</span>
+                                                                </Button>
                                                             </div>
                                                             <div className="w-40">
                                                                 <p className="text-white text-center mb-0">Club A. Guemes</p>
@@ -289,17 +289,17 @@ const Banner = () => {
                                                             </div>
                                                             <div className="w-5">
                                                                 <Button className="list-btns" variant="light">
-                                                                    <span className="text-success">B</span> 
+                                                                    <span className="text-success">B</span>
                                                                 </Button>
                                                             </div>
                                                         </div>
                                                     </ListGroup.Item>
                                                     <ListGroup.Item>
                                                     <div className="w-100 d-flex">
-                                                            <div className="w-5">             
+                                                            <div className="w-5">
                                                                 <Button className="list-btns padding-none" variant="light">
-                                                                    <span className="">FT</span> 
-                                                                </Button>     
+                                                                    <span className="">FT</span>
+                                                                </Button>
                                                             </div>
                                                             <div className="w-40">
                                                                 <p className="text-white text-center mb-0">Real Potosi</p>
@@ -316,17 +316,17 @@ const Banner = () => {
                                                             </div>
                                                             <div className="w-5">
                                                                 <Button className="list-btns" variant="light">
-                                                                    <span className="text-success">B</span> 
+                                                                    <span className="text-success">B</span>
                                                                 </Button>
                                                             </div>
                                                         </div>
                                                     </ListGroup.Item>
                                                     <ListGroup.Item>
                                                     <div className="w-100 d-flex">
-                                                            <div className="w-5">             
+                                                            <div className="w-5">
                                                                 <Button className="list-btns padding-none" variant="light">
-                                                                    <span className="">FT</span> 
-                                                                </Button>     
+                                                                    <span className="">FT</span>
+                                                                </Button>
                                                             </div>
                                                             <div className="w-40">
                                                                 <p className="text-white text-center mb-0">San Jose</p>
@@ -343,17 +343,17 @@ const Banner = () => {
                                                             </div>
                                                             <div className="w-5">
                                                                 <Button className="list-btns" variant="light">
-                                                                    <span className="text-success">B</span> 
+                                                                    <span className="text-success">B</span>
                                                                 </Button>
                                                             </div>
                                                         </div>
                                                     </ListGroup.Item>
                                                     <ListGroup.Item>
                                                     <div className="w-100 d-flex">
-                                                            <div className="w-5">             
+                                                            <div className="w-5">
                                                                 <Button className="list-btns padding-none" variant="light">
-                                                                    <span className="">FT</span> 
-                                                                </Button>     
+                                                                    <span className="">FT</span>
+                                                                </Button>
                                                             </div>
                                                             <div className="w-40">
                                                                 <p className="text-white text-center mb-0">San Jose</p>
@@ -370,17 +370,17 @@ const Banner = () => {
                                                             </div>
                                                             <div className="w-5">
                                                                 <Button className="list-btns" variant="light">
-                                                                    <span className="text-success">B</span> 
+                                                                    <span className="text-success">B</span>
                                                                 </Button>
                                                             </div>
                                                         </div>
                                                     </ListGroup.Item>
                                                     <ListGroup.Item>
                                                     <div className="w-100 d-flex">
-                                                            <div className="w-5">             
+                                                            <div className="w-5">
                                                                 <Button className="list-btns padding-none" variant="light">
-                                                                    <span className="">FT</span> 
-                                                                </Button>     
+                                                                    <span className="">FT</span>
+                                                                </Button>
                                                             </div>
                                                             <div className="w-40">
                                                                 <p className="text-white text-center mb-0">San Jose</p>
@@ -397,143 +397,7 @@ const Banner = () => {
                                                             </div>
                                                             <div className="w-5">
                                                                 <Button className="list-btns" variant="light">
-                                                                    <span className="text-success">B</span> 
-                                                                </Button>
-                                                            </div>
-                                                        </div>
-                                                    </ListGroup.Item>
-
-                                                    <ListGroup.Item>
-                                                    <div className="w-100 d-flex">
-                                                            <div className="w-5">             
-                                                                <Button className="list-btns padding-none" variant="light">
-                                                                    <span className="">FT</span> 
-                                                                </Button>     
-                                                            </div>
-                                                            <div className="w-40">
-                                                                <p className="text-white text-center mb-0">San Jose</p>
-                                                            </div>
-                                                            <div className="w-10">
-                                                                <div className="d-flex justify-content-center">
-                                                                    <span className="text-white ml-1">0</span>
-                                                                    <span className="text-white">:</span>
-                                                                    <span className="text-white mr-1">3</span>
-                                                                </div>
-                                                            </div>
-                                                            <div className="w-40">
-                                                                <p className="text-white text-center mb-0">Guabira</p>
-                                                            </div>
-                                                            <div className="w-5">
-                                                                <Button className="list-btns" variant="light">
-                                                                    <span className="text-success">B</span> 
-                                                                </Button>
-                                                            </div>
-                                                        </div>
-                                                    </ListGroup.Item>
-                                                    <ListGroup.Item>
-                                                    <div className="w-100 d-flex">
-                                                            <div className="w-5">             
-                                                                <Button className="list-btns padding-none" variant="light">
-                                                                    <span className="">FT</span> 
-                                                                </Button>     
-                                                            </div>
-                                                            <div className="w-40">
-                                                                <p className="text-white text-center mb-0">San Jose</p>
-                                                            </div>
-                                                            <div className="w-10">
-                                                                <div className="d-flex justify-content-center">
-                                                                    <span className="text-white ml-1">0</span>
-                                                                    <span className="text-white">:</span>
-                                                                    <span className="text-white mr-1">3</span>
-                                                                </div>
-                                                            </div>
-                                                            <div className="w-40">
-                                                                <p className="text-white text-center mb-0">Guabira</p>
-                                                            </div>
-                                                            <div className="w-5">
-                                                                <Button className="list-btns" variant="light">
-                                                                    <span className="text-success">B</span> 
-                                                                </Button>
-                                                            </div>
-                                                        </div>
-                                                    </ListGroup.Item>
-                                                    <ListGroup.Item>
-                                                    <div className="w-100 d-flex">
-                                                            <div className="w-5">             
-                                                                <Button className="list-btns padding-none" variant="light">
-                                                                    <span className="">FT</span> 
-                                                                </Button>     
-                                                            </div>
-                                                            <div className="w-40">
-                                                                <p className="text-white text-center mb-0">San Jose</p>
-                                                            </div>
-                                                            <div className="w-10">
-                                                                <div className="d-flex justify-content-center">
-                                                                    <span className="text-white ml-1">0</span>
-                                                                    <span className="text-white">:</span>
-                                                                    <span className="text-white mr-1">3</span>
-                                                                </div>
-                                                            </div>
-                                                            <div className="w-40">
-                                                                <p className="text-white text-center mb-0">Guabira</p>
-                                                            </div>
-                                                            <div className="w-5">
-                                                                <Button className="list-btns" variant="light">
-                                                                    <span className="text-success">B</span> 
-                                                                </Button>
-                                                            </div>
-                                                        </div>
-                                                    </ListGroup.Item>
-                                                    <ListGroup.Item>
-                                                    <div className="w-100 d-flex">
-                                                            <div className="w-5">             
-                                                                <Button className="list-btns padding-none" variant="light">
-                                                                    <span className="">FT</span> 
-                                                                </Button>     
-                                                            </div>
-                                                            <div className="w-40">
-                                                                <p className="text-white text-center mb-0">San Jose</p>
-                                                            </div>
-                                                            <div className="w-10">
-                                                                <div className="d-flex justify-content-center">
-                                                                    <span className="text-white ml-1">0</span>
-                                                                    <span className="text-white">:</span>
-                                                                    <span className="text-white mr-1">3</span>
-                                                                </div>
-                                                            </div>
-                                                            <div className="w-40">
-                                                                <p className="text-white text-center mb-0">Guabira</p>
-                                                            </div>
-                                                            <div className="w-5">
-                                                                <Button className="list-btns" variant="light">
-                                                                    <span className="text-success">B</span> 
-                                                                </Button>
-                                                            </div>
-                                                        </div>
-                                                    </ListGroup.Item>
-                                                    <ListGroup.Item>
-                                                    <div className="w-100 d-flex">
-                                                            <div className="w-5">             
-                                                                <Button className="list-btns padding-none" variant="light">
-                                                                    <span className="">FT</span> 
-                                                                </Button>     
-                                                            </div>
-                                                            <div className="w-40">
-                                                                <p className="text-white text-center mb-0">San Jose</p>
-                                                            </div>
-                                                            <div className="w-10">
-                                                                <div className="d-flex justify-content-center">
-                                                                    <span className="text-white ml-1">0</span>
-                                                                    <span className="text-white">:</span>
-                                                                    <span className="text-white mr-1">3</span>
-                                                                </div>
-                                                            </div>
-                                                            <div className="w-40">
-                                                                <p className="text-white text-center mb-0">Guabira</p>
-                                                            </div>
-                                                            <div className="w-5">
-                                                                <Button className="list-btns" variant="light">
-                                                                    <span className="text-success">B</span> 
+                                                                    <span className="text-success">B</span>
                                                                 </Button>
                                                             </div>
                                                         </div>
@@ -541,10 +405,10 @@ const Banner = () => {
 
                                                     <ListGroup.Item>
                                                     <div className="w-100 d-flex">
-                                                            <div className="w-5">             
+                                                            <div className="w-5">
                                                                 <Button className="list-btns padding-none" variant="light">
-                                                                    <span className="">FT</span> 
-                                                                </Button>     
+                                                                    <span className="">FT</span>
+                                                                </Button>
                                                             </div>
                                                             <div className="w-40">
                                                                 <p className="text-white text-center mb-0">San Jose</p>
@@ -561,17 +425,17 @@ const Banner = () => {
                                                             </div>
                                                             <div className="w-5">
                                                                 <Button className="list-btns" variant="light">
-                                                                    <span className="text-success">B</span> 
+                                                                    <span className="text-success">B</span>
                                                                 </Button>
                                                             </div>
                                                         </div>
                                                     </ListGroup.Item>
                                                     <ListGroup.Item>
                                                     <div className="w-100 d-flex">
-                                                            <div className="w-5">             
+                                                            <div className="w-5">
                                                                 <Button className="list-btns padding-none" variant="light">
-                                                                    <span className="">FT</span> 
-                                                                </Button>     
+                                                                    <span className="">FT</span>
+                                                                </Button>
                                                             </div>
                                                             <div className="w-40">
                                                                 <p className="text-white text-center mb-0">San Jose</p>
@@ -588,17 +452,17 @@ const Banner = () => {
                                                             </div>
                                                             <div className="w-5">
                                                                 <Button className="list-btns" variant="light">
-                                                                    <span className="text-success">B</span> 
+                                                                    <span className="text-success">B</span>
                                                                 </Button>
                                                             </div>
                                                         </div>
                                                     </ListGroup.Item>
                                                     <ListGroup.Item>
                                                     <div className="w-100 d-flex">
-                                                            <div className="w-5">             
+                                                            <div className="w-5">
                                                                 <Button className="list-btns padding-none" variant="light">
-                                                                    <span className="">FT</span> 
-                                                                </Button>     
+                                                                    <span className="">FT</span>
+                                                                </Button>
                                                             </div>
                                                             <div className="w-40">
                                                                 <p className="text-white text-center mb-0">San Jose</p>
@@ -615,17 +479,17 @@ const Banner = () => {
                                                             </div>
                                                             <div className="w-5">
                                                                 <Button className="list-btns" variant="light">
-                                                                    <span className="text-success">B</span> 
+                                                                    <span className="text-success">B</span>
                                                                 </Button>
                                                             </div>
                                                         </div>
                                                     </ListGroup.Item>
                                                     <ListGroup.Item>
                                                     <div className="w-100 d-flex">
-                                                            <div className="w-5">             
+                                                            <div className="w-5">
                                                                 <Button className="list-btns padding-none" variant="light">
-                                                                    <span className="">FT</span> 
-                                                                </Button>     
+                                                                    <span className="">FT</span>
+                                                                </Button>
                                                             </div>
                                                             <div className="w-40">
                                                                 <p className="text-white text-center mb-0">San Jose</p>
@@ -642,7 +506,143 @@ const Banner = () => {
                                                             </div>
                                                             <div className="w-5">
                                                                 <Button className="list-btns" variant="light">
-                                                                    <span className="text-success">B</span> 
+                                                                    <span className="text-success">B</span>
+                                                                </Button>
+                                                            </div>
+                                                        </div>
+                                                    </ListGroup.Item>
+                                                    <ListGroup.Item>
+                                                    <div className="w-100 d-flex">
+                                                            <div className="w-5">
+                                                                <Button className="list-btns padding-none" variant="light">
+                                                                    <span className="">FT</span>
+                                                                </Button>
+                                                            </div>
+                                                            <div className="w-40">
+                                                                <p className="text-white text-center mb-0">San Jose</p>
+                                                            </div>
+                                                            <div className="w-10">
+                                                                <div className="d-flex justify-content-center">
+                                                                    <span className="text-white ml-1">0</span>
+                                                                    <span className="text-white">:</span>
+                                                                    <span className="text-white mr-1">3</span>
+                                                                </div>
+                                                            </div>
+                                                            <div className="w-40">
+                                                                <p className="text-white text-center mb-0">Guabira</p>
+                                                            </div>
+                                                            <div className="w-5">
+                                                                <Button className="list-btns" variant="light">
+                                                                    <span className="text-success">B</span>
+                                                                </Button>
+                                                            </div>
+                                                        </div>
+                                                    </ListGroup.Item>
+
+                                                    <ListGroup.Item>
+                                                    <div className="w-100 d-flex">
+                                                            <div className="w-5">
+                                                                <Button className="list-btns padding-none" variant="light">
+                                                                    <span className="">FT</span>
+                                                                </Button>
+                                                            </div>
+                                                            <div className="w-40">
+                                                                <p className="text-white text-center mb-0">San Jose</p>
+                                                            </div>
+                                                            <div className="w-10">
+                                                                <div className="d-flex justify-content-center">
+                                                                    <span className="text-white ml-1">0</span>
+                                                                    <span className="text-white">:</span>
+                                                                    <span className="text-white mr-1">3</span>
+                                                                </div>
+                                                            </div>
+                                                            <div className="w-40">
+                                                                <p className="text-white text-center mb-0">Guabira</p>
+                                                            </div>
+                                                            <div className="w-5">
+                                                                <Button className="list-btns" variant="light">
+                                                                    <span className="text-success">B</span>
+                                                                </Button>
+                                                            </div>
+                                                        </div>
+                                                    </ListGroup.Item>
+                                                    <ListGroup.Item>
+                                                    <div className="w-100 d-flex">
+                                                            <div className="w-5">
+                                                                <Button className="list-btns padding-none" variant="light">
+                                                                    <span className="">FT</span>
+                                                                </Button>
+                                                            </div>
+                                                            <div className="w-40">
+                                                                <p className="text-white text-center mb-0">San Jose</p>
+                                                            </div>
+                                                            <div className="w-10">
+                                                                <div className="d-flex justify-content-center">
+                                                                    <span className="text-white ml-1">0</span>
+                                                                    <span className="text-white">:</span>
+                                                                    <span className="text-white mr-1">3</span>
+                                                                </div>
+                                                            </div>
+                                                            <div className="w-40">
+                                                                <p className="text-white text-center mb-0">Guabira</p>
+                                                            </div>
+                                                            <div className="w-5">
+                                                                <Button className="list-btns" variant="light">
+                                                                    <span className="text-success">B</span>
+                                                                </Button>
+                                                            </div>
+                                                        </div>
+                                                    </ListGroup.Item>
+                                                    <ListGroup.Item>
+                                                    <div className="w-100 d-flex">
+                                                            <div className="w-5">
+                                                                <Button className="list-btns padding-none" variant="light">
+                                                                    <span className="">FT</span>
+                                                                </Button>
+                                                            </div>
+                                                            <div className="w-40">
+                                                                <p className="text-white text-center mb-0">San Jose</p>
+                                                            </div>
+                                                            <div className="w-10">
+                                                                <div className="d-flex justify-content-center">
+                                                                    <span className="text-white ml-1">0</span>
+                                                                    <span className="text-white">:</span>
+                                                                    <span className="text-white mr-1">3</span>
+                                                                </div>
+                                                            </div>
+                                                            <div className="w-40">
+                                                                <p className="text-white text-center mb-0">Guabira</p>
+                                                            </div>
+                                                            <div className="w-5">
+                                                                <Button className="list-btns" variant="light">
+                                                                    <span className="text-success">B</span>
+                                                                </Button>
+                                                            </div>
+                                                        </div>
+                                                    </ListGroup.Item>
+                                                    <ListGroup.Item>
+                                                    <div className="w-100 d-flex">
+                                                            <div className="w-5">
+                                                                <Button className="list-btns padding-none" variant="light">
+                                                                    <span className="">FT</span>
+                                                                </Button>
+                                                            </div>
+                                                            <div className="w-40">
+                                                                <p className="text-white text-center mb-0">San Jose</p>
+                                                            </div>
+                                                            <div className="w-10">
+                                                                <div className="d-flex justify-content-center">
+                                                                    <span className="text-white ml-1">0</span>
+                                                                    <span className="text-white">:</span>
+                                                                    <span className="text-white mr-1">3</span>
+                                                                </div>
+                                                            </div>
+                                                            <div className="w-40">
+                                                                <p className="text-white text-center mb-0">Guabira</p>
+                                                            </div>
+                                                            <div className="w-5">
+                                                                <Button className="list-btns" variant="light">
+                                                                    <span className="text-success">B</span>
                                                                 </Button>
                                                             </div>
                                                         </div>
@@ -653,8 +653,8 @@ const Banner = () => {
 
                             </Accordion.Collapse>
                         </Card>
-                    
-    
+
+
 
 
 
@@ -669,31 +669,31 @@ const Banner = () => {
 
 
                     </Accordion>
-                
+
                 </Tab>
                 <Tab eventKey="progres" title="Live">
                     <Accordion defaultActiveKey="0">
-                        
+
 <Card className="py-4 px-3 accord_btns">
                             <ButtonToolbar>
                                     <Button className="according_filter mx-1" variant="light">
                                         <span className="text-white">ALL</span>
                                     </Button>
                                     <Button className="according_filter mx-1" variant="light">
-                                        <span className="text-primary">A</span>  
+                                        <span className="text-primary">A</span>
                                     </Button>
                                     <Button className="according_filter mx-1" variant="light">
-                                        <span className="text-success">B</span> 
+                                        <span className="text-success">B</span>
                                     </Button>
                                     <Button className="according_filter mx-1" variant="light">
-                                        <span className="text-danger">C</span>  
+                                        <span className="text-danger">C</span>
                                     </Button>
                                     <Button className="according_filter mx-1" variant="light">
-                                        <span className="text-warning">D</span> 
+                                        <span className="text-warning">D</span>
                                     </Button>
                             </ButtonToolbar>
                         </Card>
-                        <Card>                        
+                        <Card>
                             <Card.Header className="banner-header">
                                 <Accordion.Toggle as={Button} variant="link" eventKey="0" className="according">
                                     <div className="text-white link-toggle">
@@ -701,19 +701,19 @@ const Banner = () => {
                                         <span className="ml-4">ITALY-SERIE B</span>
                                     </div>
                                 </Accordion.Toggle>
-                            </Card.Header>             
+                            </Card.Header>
                             <Accordion.Collapse eventKey="0" className="accorting-container">
-                           
+
                                 <Row>
                                     <Col md={8}>
                                         <Card.Body className="acordion-body">
                                                 <ListGroup variant="flush" className="acordion-body">
                                                     <ListGroup.Item>
                                                         <div className="w-100 d-flex">
-                                                            <div className="w-5">             
+                                                            <div className="w-5">
                                                                 <Button className="list-btns padding-none" variant="light">
-                                                                    <span className="">FT</span> 
-                                                                </Button>     
+                                                                    <span className="">FT</span>
+                                                                </Button>
                                                             </div>
                                                             <div className="w-40">
                                                                 <p className="text-white text-center mb-0">Central Norte</p>
@@ -730,17 +730,17 @@ const Banner = () => {
                                                             </div>
                                                             <div className="w-5">
                                                                 <Button className="list-btns" variant="light">
-                                                                    <span className="text-success">B</span> 
+                                                                    <span className="text-success">B</span>
                                                                 </Button>
                                                             </div>
                                                         </div>
                                                     </ListGroup.Item>
                                                     <ListGroup.Item>
                                                     <div className="w-100 d-flex">
-                                                            <div className="w-5">             
+                                                            <div className="w-5">
                                                                 <Button className="list-btns padding-none" variant="light">
-                                                                    <span className="">FT</span> 
-                                                                </Button>     
+                                                                    <span className="">FT</span>
+                                                                </Button>
                                                             </div>
                                                             <div className="w-40">
                                                                 <p className="text-white text-center mb-0">Crucero del Norte</p>
@@ -757,17 +757,17 @@ const Banner = () => {
                                                             </div>
                                                             <div className="w-5">
                                                                 <Button className="list-btns" variant="light">
-                                                                    <span className="text-warning">D</span> 
+                                                                    <span className="text-warning">D</span>
                                                                 </Button>
                                                             </div>
                                                         </div>
                                                     </ListGroup.Item>
                                                     <ListGroup.Item>
                                                     <div className="w-100 d-flex">
-                                                            <div className="w-5">             
+                                                            <div className="w-5">
                                                                 <Button className="list-btns padding-none" variant="light">
-                                                                    <span className="">FT</span> 
-                                                                </Button>     
+                                                                    <span className="">FT</span>
+                                                                </Button>
                                                             </div>
                                                             <div className="w-40">
                                                                 <p className="text-white text-center mb-0">Boca Unidos</p>
@@ -784,17 +784,17 @@ const Banner = () => {
                                                             </div>
                                                             <div className="w-5">
                                                                 <Button className="list-btns" variant="light">
-                                                                    <span className="text-primary">A</span> 
+                                                                    <span className="text-primary">A</span>
                                                                 </Button>
                                                             </div>
                                                         </div>
                                                     </ListGroup.Item>
                                                     <ListGroup.Item>
                                                     <div className="w-100 d-flex">
-                                                            <div className="w-5">             
+                                                            <div className="w-5">
                                                                 <Button className="list-btns padding-none" variant="light">
-                                                                    <span className="">FT</span> 
-                                                                </Button>     
+                                                                    <span className="">FT</span>
+                                                                </Button>
                                                             </div>
                                                             <div className="w-40">
                                                                 <p className="text-white text-center mb-0">Club A. Guemes</p>
@@ -811,17 +811,17 @@ const Banner = () => {
                                                             </div>
                                                             <div className="w-5">
                                                                 <Button className="list-btns" variant="light">
-                                                                    <span className="text-danger">C</span> 
+                                                                    <span className="text-danger">C</span>
                                                                 </Button>
                                                             </div>
                                                         </div>
                                                     </ListGroup.Item>
                                                     <ListGroup.Item>
                                                     <div className="w-100 d-flex">
-                                                            <div className="w-5">             
+                                                            <div className="w-5">
                                                                 <Button className="list-btns padding-none" variant="light">
-                                                                    <span className="">FT</span> 
-                                                                </Button>     
+                                                                    <span className="">FT</span>
+                                                                </Button>
                                                             </div>
                                                             <div className="w-40">
                                                                 <p className="text-white text-center mb-0">Real Potosi</p>
@@ -838,17 +838,17 @@ const Banner = () => {
                                                             </div>
                                                             <div className="w-5">
                                                                 <Button className="list-btns" variant="light">
-                                                                    <span className="text-success">B</span> 
+                                                                    <span className="text-success">B</span>
                                                                 </Button>
                                                             </div>
                                                         </div>
                                                     </ListGroup.Item>
                                                     <ListGroup.Item>
                                                     <div className="w-100 d-flex">
-                                                            <div className="w-5">             
+                                                            <div className="w-5">
                                                                 <Button className="list-btns padding-none" variant="light">
-                                                                    <span className="">FT</span> 
-                                                                </Button>     
+                                                                    <span className="">FT</span>
+                                                                </Button>
                                                             </div>
                                                             <div className="w-40">
                                                                 <p className="text-white text-center mb-0">San Jose</p>
@@ -865,7 +865,7 @@ const Banner = () => {
                                                             </div>
                                                             <div className="w-5">
                                                                 <Button className="list-btns" variant="light">
-                                                                    <span className="text-success">B</span> 
+                                                                    <span className="text-success">B</span>
                                                                 </Button>
                                                             </div>
                                                         </div>
@@ -880,9 +880,9 @@ const Banner = () => {
                                         </Card.Body>
                                     </Col>
                                 </Row>
-                             
-                                
-                                
+
+
+
                             </Accordion.Collapse>
                         </Card>
                         <Card>
@@ -900,10 +900,10 @@ const Banner = () => {
                                 <ListGroup variant="flush" className="acordion-body">
                                                     <ListGroup.Item>
                                                         <div className="w-100 d-flex">
-                                                            <div className="w-5">             
+                                                            <div className="w-5">
                                                                 <Button className="list-btns padding-none" variant="light">
-                                                                    <span className="">FT</span> 
-                                                                </Button>     
+                                                                    <span className="">FT</span>
+                                                                </Button>
                                                             </div>
                                                             <div className="w-40">
                                                                 <p className="text-white text-center mb-0">Central Norte</p>
@@ -920,17 +920,17 @@ const Banner = () => {
                                                             </div>
                                                             <div className="w-5">
                                                                 <Button className="list-btns" variant="light">
-                                                                    <span className="text-success">B</span> 
+                                                                    <span className="text-success">B</span>
                                                                 </Button>
                                                             </div>
                                                         </div>
                                                     </ListGroup.Item>
                                                     <ListGroup.Item>
                                                     <div className="w-100 d-flex">
-                                                            <div className="w-5">             
+                                                            <div className="w-5">
                                                                 <Button className="list-btns padding-none" variant="light">
-                                                                    <span className="">FT</span> 
-                                                                </Button>     
+                                                                    <span className="">FT</span>
+                                                                </Button>
                                                             </div>
                                                             <div className="w-40">
                                                                 <p className="text-white text-center mb-0">Crucero del Norte</p>
@@ -947,17 +947,17 @@ const Banner = () => {
                                                             </div>
                                                             <div className="w-5">
                                                                 <Button className="list-btns" variant="light">
-                                                                    <span className="text-success">B</span> 
+                                                                    <span className="text-success">B</span>
                                                                 </Button>
                                                             </div>
                                                         </div>
                                                     </ListGroup.Item>
                                                     <ListGroup.Item>
                                                     <div className="w-100 d-flex">
-                                                            <div className="w-5">             
+                                                            <div className="w-5">
                                                                 <Button className="list-btns padding-none" variant="light">
-                                                                    <span className="">FT</span> 
-                                                                </Button>     
+                                                                    <span className="">FT</span>
+                                                                </Button>
                                                             </div>
                                                             <div className="w-40">
                                                                 <p className="text-white text-center mb-0">Boca Unidos</p>
@@ -974,17 +974,17 @@ const Banner = () => {
                                                             </div>
                                                             <div className="w-5">
                                                                 <Button className="list-btns" variant="light">
-                                                                    <span className="text-success">B</span> 
+                                                                    <span className="text-success">B</span>
                                                                 </Button>
                                                             </div>
                                                         </div>
                                                     </ListGroup.Item>
                                                     <ListGroup.Item>
                                                     <div className="w-100 d-flex">
-                                                            <div className="w-5">             
+                                                            <div className="w-5">
                                                                 <Button className="list-btns padding-none" variant="light">
-                                                                    <span className="">FT</span> 
-                                                                </Button>     
+                                                                    <span className="">FT</span>
+                                                                </Button>
                                                             </div>
                                                             <div className="w-40">
                                                                 <p className="text-white text-center mb-0">Club A. Guemes</p>
@@ -1001,17 +1001,17 @@ const Banner = () => {
                                                             </div>
                                                             <div className="w-5">
                                                                 <Button className="list-btns" variant="light">
-                                                                    <span className="text-success">B</span> 
+                                                                    <span className="text-success">B</span>
                                                                 </Button>
                                                             </div>
                                                         </div>
                                                     </ListGroup.Item>
                                                     <ListGroup.Item>
                                                     <div className="w-100 d-flex">
-                                                            <div className="w-5">             
+                                                            <div className="w-5">
                                                                 <Button className="list-btns padding-none" variant="light">
-                                                                    <span className="">FT</span> 
-                                                                </Button>     
+                                                                    <span className="">FT</span>
+                                                                </Button>
                                                             </div>
                                                             <div className="w-40">
                                                                 <p className="text-white text-center mb-0">Real Potosi</p>
@@ -1028,17 +1028,17 @@ const Banner = () => {
                                                             </div>
                                                             <div className="w-5">
                                                                 <Button className="list-btns" variant="light">
-                                                                    <span className="text-success">B</span> 
+                                                                    <span className="text-success">B</span>
                                                                 </Button>
                                                             </div>
                                                         </div>
                                                     </ListGroup.Item>
                                                     <ListGroup.Item>
                                                     <div className="w-100 d-flex">
-                                                            <div className="w-5">             
+                                                            <div className="w-5">
                                                                 <Button className="list-btns padding-none" variant="light">
-                                                                    <span className="">FT</span> 
-                                                                </Button>     
+                                                                    <span className="">FT</span>
+                                                                </Button>
                                                             </div>
                                                             <div className="w-40">
                                                                 <p className="text-white text-center mb-0">San Jose</p>
@@ -1055,17 +1055,17 @@ const Banner = () => {
                                                             </div>
                                                             <div className="w-5">
                                                                 <Button className="list-btns" variant="light">
-                                                                    <span className="text-success">B</span> 
+                                                                    <span className="text-success">B</span>
                                                                 </Button>
                                                             </div>
                                                         </div>
                                                     </ListGroup.Item>
                                                     <ListGroup.Item>
                                                     <div className="w-100 d-flex">
-                                                            <div className="w-5">             
+                                                            <div className="w-5">
                                                                 <Button className="list-btns padding-none" variant="light">
-                                                                    <span className="">FT</span> 
-                                                                </Button>     
+                                                                    <span className="">FT</span>
+                                                                </Button>
                                                             </div>
                                                             <div className="w-40">
                                                                 <p className="text-white text-center mb-0">San Jose</p>
@@ -1082,17 +1082,17 @@ const Banner = () => {
                                                             </div>
                                                             <div className="w-5">
                                                                 <Button className="list-btns" variant="light">
-                                                                    <span className="text-success">B</span> 
+                                                                    <span className="text-success">B</span>
                                                                 </Button>
                                                             </div>
                                                         </div>
                                                     </ListGroup.Item>
                                                     <ListGroup.Item>
                                                     <div className="w-100 d-flex">
-                                                            <div className="w-5">             
+                                                            <div className="w-5">
                                                                 <Button className="list-btns padding-none" variant="light">
-                                                                    <span className="">FT</span> 
-                                                                </Button>     
+                                                                    <span className="">FT</span>
+                                                                </Button>
                                                             </div>
                                                             <div className="w-40">
                                                                 <p className="text-white text-center mb-0">San Jose</p>
@@ -1109,143 +1109,7 @@ const Banner = () => {
                                                             </div>
                                                             <div className="w-5">
                                                                 <Button className="list-btns" variant="light">
-                                                                    <span className="text-success">B</span> 
-                                                                </Button>
-                                                            </div>
-                                                        </div>
-                                                    </ListGroup.Item>
-
-                                                    <ListGroup.Item>
-                                                    <div className="w-100 d-flex">
-                                                            <div className="w-5">             
-                                                                <Button className="list-btns padding-none" variant="light">
-                                                                    <span className="">FT</span> 
-                                                                </Button>     
-                                                            </div>
-                                                            <div className="w-40">
-                                                                <p className="text-white text-center mb-0">San Jose</p>
-                                                            </div>
-                                                            <div className="w-10">
-                                                                <div className="d-flex justify-content-center">
-                                                                    <span className="text-white ml-1">0</span>
-                                                                    <span className="text-white">:</span>
-                                                                    <span className="text-white mr-1">3</span>
-                                                                </div>
-                                                            </div>
-                                                            <div className="w-40">
-                                                                <p className="text-white text-center mb-0">Guabira</p>
-                                                            </div>
-                                                            <div className="w-5">
-                                                                <Button className="list-btns" variant="light">
-                                                                    <span className="text-success">B</span> 
-                                                                </Button>
-                                                            </div>
-                                                        </div>
-                                                    </ListGroup.Item>
-                                                    <ListGroup.Item>
-                                                    <div className="w-100 d-flex">
-                                                            <div className="w-5">             
-                                                                <Button className="list-btns padding-none" variant="light">
-                                                                    <span className="">FT</span> 
-                                                                </Button>     
-                                                            </div>
-                                                            <div className="w-40">
-                                                                <p className="text-white text-center mb-0">San Jose</p>
-                                                            </div>
-                                                            <div className="w-10">
-                                                                <div className="d-flex justify-content-center">
-                                                                    <span className="text-white ml-1">0</span>
-                                                                    <span className="text-white">:</span>
-                                                                    <span className="text-white mr-1">3</span>
-                                                                </div>
-                                                            </div>
-                                                            <div className="w-40">
-                                                                <p className="text-white text-center mb-0">Guabira</p>
-                                                            </div>
-                                                            <div className="w-5">
-                                                                <Button className="list-btns" variant="light">
-                                                                    <span className="text-success">B</span> 
-                                                                </Button>
-                                                            </div>
-                                                        </div>
-                                                    </ListGroup.Item>
-                                                    <ListGroup.Item>
-                                                    <div className="w-100 d-flex">
-                                                            <div className="w-5">             
-                                                                <Button className="list-btns padding-none" variant="light">
-                                                                    <span className="">FT</span> 
-                                                                </Button>     
-                                                            </div>
-                                                            <div className="w-40">
-                                                                <p className="text-white text-center mb-0">San Jose</p>
-                                                            </div>
-                                                            <div className="w-10">
-                                                                <div className="d-flex justify-content-center">
-                                                                    <span className="text-white ml-1">0</span>
-                                                                    <span className="text-white">:</span>
-                                                                    <span className="text-white mr-1">3</span>
-                                                                </div>
-                                                            </div>
-                                                            <div className="w-40">
-                                                                <p className="text-white text-center mb-0">Guabira</p>
-                                                            </div>
-                                                            <div className="w-5">
-                                                                <Button className="list-btns" variant="light">
-                                                                    <span className="text-success">B</span> 
-                                                                </Button>
-                                                            </div>
-                                                        </div>
-                                                    </ListGroup.Item>
-                                                    <ListGroup.Item>
-                                                    <div className="w-100 d-flex">
-                                                            <div className="w-5">             
-                                                                <Button className="list-btns padding-none" variant="light">
-                                                                    <span className="">FT</span> 
-                                                                </Button>     
-                                                            </div>
-                                                            <div className="w-40">
-                                                                <p className="text-white text-center mb-0">San Jose</p>
-                                                            </div>
-                                                            <div className="w-10">
-                                                                <div className="d-flex justify-content-center">
-                                                                    <span className="text-white ml-1">0</span>
-                                                                    <span className="text-white">:</span>
-                                                                    <span className="text-white mr-1">3</span>
-                                                                </div>
-                                                            </div>
-                                                            <div className="w-40">
-                                                                <p className="text-white text-center mb-0">Guabira</p>
-                                                            </div>
-                                                            <div className="w-5">
-                                                                <Button className="list-btns" variant="light">
-                                                                    <span className="text-success">B</span> 
-                                                                </Button>
-                                                            </div>
-                                                        </div>
-                                                    </ListGroup.Item>
-                                                    <ListGroup.Item>
-                                                    <div className="w-100 d-flex">
-                                                            <div className="w-5">             
-                                                                <Button className="list-btns padding-none" variant="light">
-                                                                    <span className="">FT</span> 
-                                                                </Button>     
-                                                            </div>
-                                                            <div className="w-40">
-                                                                <p className="text-white text-center mb-0">San Jose</p>
-                                                            </div>
-                                                            <div className="w-10">
-                                                                <div className="d-flex justify-content-center">
-                                                                    <span className="text-white ml-1">0</span>
-                                                                    <span className="text-white">:</span>
-                                                                    <span className="text-white mr-1">3</span>
-                                                                </div>
-                                                            </div>
-                                                            <div className="w-40">
-                                                                <p className="text-white text-center mb-0">Guabira</p>
-                                                            </div>
-                                                            <div className="w-5">
-                                                                <Button className="list-btns" variant="light">
-                                                                    <span className="text-success">B</span> 
+                                                                    <span className="text-success">B</span>
                                                                 </Button>
                                                             </div>
                                                         </div>
@@ -1253,10 +1117,10 @@ const Banner = () => {
 
                                                     <ListGroup.Item>
                                                     <div className="w-100 d-flex">
-                                                            <div className="w-5">             
+                                                            <div className="w-5">
                                                                 <Button className="list-btns padding-none" variant="light">
-                                                                    <span className="">FT</span> 
-                                                                </Button>     
+                                                                    <span className="">FT</span>
+                                                                </Button>
                                                             </div>
                                                             <div className="w-40">
                                                                 <p className="text-white text-center mb-0">San Jose</p>
@@ -1273,17 +1137,17 @@ const Banner = () => {
                                                             </div>
                                                             <div className="w-5">
                                                                 <Button className="list-btns" variant="light">
-                                                                    <span className="text-success">B</span> 
+                                                                    <span className="text-success">B</span>
                                                                 </Button>
                                                             </div>
                                                         </div>
                                                     </ListGroup.Item>
                                                     <ListGroup.Item>
                                                     <div className="w-100 d-flex">
-                                                            <div className="w-5">             
+                                                            <div className="w-5">
                                                                 <Button className="list-btns padding-none" variant="light">
-                                                                    <span className="">FT</span> 
-                                                                </Button>     
+                                                                    <span className="">FT</span>
+                                                                </Button>
                                                             </div>
                                                             <div className="w-40">
                                                                 <p className="text-white text-center mb-0">San Jose</p>
@@ -1300,17 +1164,17 @@ const Banner = () => {
                                                             </div>
                                                             <div className="w-5">
                                                                 <Button className="list-btns" variant="light">
-                                                                    <span className="text-success">B</span> 
+                                                                    <span className="text-success">B</span>
                                                                 </Button>
                                                             </div>
                                                         </div>
                                                     </ListGroup.Item>
                                                     <ListGroup.Item>
                                                     <div className="w-100 d-flex">
-                                                            <div className="w-5">             
+                                                            <div className="w-5">
                                                                 <Button className="list-btns padding-none" variant="light">
-                                                                    <span className="">FT</span> 
-                                                                </Button>     
+                                                                    <span className="">FT</span>
+                                                                </Button>
                                                             </div>
                                                             <div className="w-40">
                                                                 <p className="text-white text-center mb-0">San Jose</p>
@@ -1327,17 +1191,17 @@ const Banner = () => {
                                                             </div>
                                                             <div className="w-5">
                                                                 <Button className="list-btns" variant="light">
-                                                                    <span className="text-success">B</span> 
+                                                                    <span className="text-success">B</span>
                                                                 </Button>
                                                             </div>
                                                         </div>
                                                     </ListGroup.Item>
                                                     <ListGroup.Item>
                                                     <div className="w-100 d-flex">
-                                                            <div className="w-5">             
+                                                            <div className="w-5">
                                                                 <Button className="list-btns padding-none" variant="light">
-                                                                    <span className="">FT</span> 
-                                                                </Button>     
+                                                                    <span className="">FT</span>
+                                                                </Button>
                                                             </div>
                                                             <div className="w-40">
                                                                 <p className="text-white text-center mb-0">San Jose</p>
@@ -1354,7 +1218,143 @@ const Banner = () => {
                                                             </div>
                                                             <div className="w-5">
                                                                 <Button className="list-btns" variant="light">
-                                                                    <span className="text-success">B</span> 
+                                                                    <span className="text-success">B</span>
+                                                                </Button>
+                                                            </div>
+                                                        </div>
+                                                    </ListGroup.Item>
+                                                    <ListGroup.Item>
+                                                    <div className="w-100 d-flex">
+                                                            <div className="w-5">
+                                                                <Button className="list-btns padding-none" variant="light">
+                                                                    <span className="">FT</span>
+                                                                </Button>
+                                                            </div>
+                                                            <div className="w-40">
+                                                                <p className="text-white text-center mb-0">San Jose</p>
+                                                            </div>
+                                                            <div className="w-10">
+                                                                <div className="d-flex justify-content-center">
+                                                                    <span className="text-white ml-1">0</span>
+                                                                    <span className="text-white">:</span>
+                                                                    <span className="text-white mr-1">3</span>
+                                                                </div>
+                                                            </div>
+                                                            <div className="w-40">
+                                                                <p className="text-white text-center mb-0">Guabira</p>
+                                                            </div>
+                                                            <div className="w-5">
+                                                                <Button className="list-btns" variant="light">
+                                                                    <span className="text-success">B</span>
+                                                                </Button>
+                                                            </div>
+                                                        </div>
+                                                    </ListGroup.Item>
+
+                                                    <ListGroup.Item>
+                                                    <div className="w-100 d-flex">
+                                                            <div className="w-5">
+                                                                <Button className="list-btns padding-none" variant="light">
+                                                                    <span className="">FT</span>
+                                                                </Button>
+                                                            </div>
+                                                            <div className="w-40">
+                                                                <p className="text-white text-center mb-0">San Jose</p>
+                                                            </div>
+                                                            <div className="w-10">
+                                                                <div className="d-flex justify-content-center">
+                                                                    <span className="text-white ml-1">0</span>
+                                                                    <span className="text-white">:</span>
+                                                                    <span className="text-white mr-1">3</span>
+                                                                </div>
+                                                            </div>
+                                                            <div className="w-40">
+                                                                <p className="text-white text-center mb-0">Guabira</p>
+                                                            </div>
+                                                            <div className="w-5">
+                                                                <Button className="list-btns" variant="light">
+                                                                    <span className="text-success">B</span>
+                                                                </Button>
+                                                            </div>
+                                                        </div>
+                                                    </ListGroup.Item>
+                                                    <ListGroup.Item>
+                                                    <div className="w-100 d-flex">
+                                                            <div className="w-5">
+                                                                <Button className="list-btns padding-none" variant="light">
+                                                                    <span className="">FT</span>
+                                                                </Button>
+                                                            </div>
+                                                            <div className="w-40">
+                                                                <p className="text-white text-center mb-0">San Jose</p>
+                                                            </div>
+                                                            <div className="w-10">
+                                                                <div className="d-flex justify-content-center">
+                                                                    <span className="text-white ml-1">0</span>
+                                                                    <span className="text-white">:</span>
+                                                                    <span className="text-white mr-1">3</span>
+                                                                </div>
+                                                            </div>
+                                                            <div className="w-40">
+                                                                <p className="text-white text-center mb-0">Guabira</p>
+                                                            </div>
+                                                            <div className="w-5">
+                                                                <Button className="list-btns" variant="light">
+                                                                    <span className="text-success">B</span>
+                                                                </Button>
+                                                            </div>
+                                                        </div>
+                                                    </ListGroup.Item>
+                                                    <ListGroup.Item>
+                                                    <div className="w-100 d-flex">
+                                                            <div className="w-5">
+                                                                <Button className="list-btns padding-none" variant="light">
+                                                                    <span className="">FT</span>
+                                                                </Button>
+                                                            </div>
+                                                            <div className="w-40">
+                                                                <p className="text-white text-center mb-0">San Jose</p>
+                                                            </div>
+                                                            <div className="w-10">
+                                                                <div className="d-flex justify-content-center">
+                                                                    <span className="text-white ml-1">0</span>
+                                                                    <span className="text-white">:</span>
+                                                                    <span className="text-white mr-1">3</span>
+                                                                </div>
+                                                            </div>
+                                                            <div className="w-40">
+                                                                <p className="text-white text-center mb-0">Guabira</p>
+                                                            </div>
+                                                            <div className="w-5">
+                                                                <Button className="list-btns" variant="light">
+                                                                    <span className="text-success">B</span>
+                                                                </Button>
+                                                            </div>
+                                                        </div>
+                                                    </ListGroup.Item>
+                                                    <ListGroup.Item>
+                                                    <div className="w-100 d-flex">
+                                                            <div className="w-5">
+                                                                <Button className="list-btns padding-none" variant="light">
+                                                                    <span className="">FT</span>
+                                                                </Button>
+                                                            </div>
+                                                            <div className="w-40">
+                                                                <p className="text-white text-center mb-0">San Jose</p>
+                                                            </div>
+                                                            <div className="w-10">
+                                                                <div className="d-flex justify-content-center">
+                                                                    <span className="text-white ml-1">0</span>
+                                                                    <span className="text-white">:</span>
+                                                                    <span className="text-white mr-1">3</span>
+                                                                </div>
+                                                            </div>
+                                                            <div className="w-40">
+                                                                <p className="text-white text-center mb-0">Guabira</p>
+                                                            </div>
+                                                            <div className="w-5">
+                                                                <Button className="list-btns" variant="light">
+                                                                    <span className="text-success">B</span>
                                                                 </Button>
                                                             </div>
                                                         </div>
@@ -1365,35 +1365,35 @@ const Banner = () => {
 
                             </Accordion.Collapse>
                         </Card>
-                    
-    
-                        
+
+
+
                      </Accordion>
-                    
+
                 </Tab>
                 <Tab eventKey="end" title="Upcoming">
                      <Accordion defaultActiveKey="0">
-                         
+
 <Card className="py-4 px-3 accord_btns">
                             <ButtonToolbar>
                                     <Button className="according_filter mx-1" variant="light">
                                         <span className="text-white">ALL</span>
                                     </Button>
                                     <Button className="according_filter mx-1" variant="light">
-                                        <span className="text-primary">A</span>  
+                                        <span className="text-primary">A</span>
                                     </Button>
                                     <Button className="according_filter mx-1" variant="light">
-                                        <span className="text-success">B</span> 
+                                        <span className="text-success">B</span>
                                     </Button>
                                     <Button className="according_filter mx-1" variant="light">
-                                        <span className="text-danger">C</span>  
+                                        <span className="text-danger">C</span>
                                     </Button>
                                     <Button className="according_filter mx-1" variant="light">
-                                        <span className="text-warning">D</span> 
+                                        <span className="text-warning">D</span>
                                     </Button>
                             </ButtonToolbar>
                         </Card>
-                        <Card>                        
+                        <Card>
                             <Card.Header className="banner-header">
                                 <Accordion.Toggle as={Button} variant="link" eventKey="0" className="according">
                                     <div className="text-white link-toggle">
@@ -1401,19 +1401,19 @@ const Banner = () => {
                                         <span className="ml-4">ITALY-SERIE B</span>
                                     </div>
                                 </Accordion.Toggle>
-                            </Card.Header>             
+                            </Card.Header>
                             <Accordion.Collapse eventKey="0" className="accorting-container">
-                           
+
                                 <Row>
                                     <Col md={8}>
                                         <Card.Body className="acordion-body">
                                                 <ListGroup variant="flush" className="acordion-body">
                                                     <ListGroup.Item>
                                                         <div className="w-100 d-flex">
-                                                            <div className="w-5">             
+                                                            <div className="w-5">
                                                                 <Button className="list-btns padding-none" variant="light">
-                                                                    <span className="">FT</span> 
-                                                                </Button>     
+                                                                    <span className="">FT</span>
+                                                                </Button>
                                                             </div>
                                                             <div className="w-40">
                                                                 <p className="text-white text-center mb-0">Central Norte</p>
@@ -1430,17 +1430,17 @@ const Banner = () => {
                                                             </div>
                                                             <div className="w-5">
                                                                 <Button className="list-btns" variant="light">
-                                                                    <span className="text-success">B</span> 
+                                                                    <span className="text-success">B</span>
                                                                 </Button>
                                                             </div>
                                                         </div>
                                                     </ListGroup.Item>
                                                     <ListGroup.Item>
                                                     <div className="w-100 d-flex">
-                                                            <div className="w-5">             
+                                                            <div className="w-5">
                                                                 <Button className="list-btns padding-none" variant="light">
-                                                                    <span className="">FT</span> 
-                                                                </Button>     
+                                                                    <span className="">FT</span>
+                                                                </Button>
                                                             </div>
                                                             <div className="w-40">
                                                                 <p className="text-white text-center mb-0">Crucero del Norte</p>
@@ -1457,17 +1457,17 @@ const Banner = () => {
                                                             </div>
                                                             <div className="w-5">
                                                                 <Button className="list-btns" variant="light">
-                                                                    <span className="text-warning">D</span> 
+                                                                    <span className="text-warning">D</span>
                                                                 </Button>
                                                             </div>
                                                         </div>
                                                     </ListGroup.Item>
                                                     <ListGroup.Item>
                                                     <div className="w-100 d-flex">
-                                                            <div className="w-5">             
+                                                            <div className="w-5">
                                                                 <Button className="list-btns padding-none" variant="light">
-                                                                    <span className="">FT</span> 
-                                                                </Button>     
+                                                                    <span className="">FT</span>
+                                                                </Button>
                                                             </div>
                                                             <div className="w-40">
                                                                 <p className="text-white text-center mb-0">Boca Unidos</p>
@@ -1484,17 +1484,17 @@ const Banner = () => {
                                                             </div>
                                                             <div className="w-5">
                                                                 <Button className="list-btns" variant="light">
-                                                                    <span className="text-primary">A</span> 
+                                                                    <span className="text-primary">A</span>
                                                                 </Button>
                                                             </div>
                                                         </div>
                                                     </ListGroup.Item>
                                                     <ListGroup.Item>
                                                     <div className="w-100 d-flex">
-                                                            <div className="w-5">             
+                                                            <div className="w-5">
                                                                 <Button className="list-btns padding-none" variant="light">
-                                                                    <span className="">FT</span> 
-                                                                </Button>     
+                                                                    <span className="">FT</span>
+                                                                </Button>
                                                             </div>
                                                             <div className="w-40">
                                                                 <p className="text-white text-center mb-0">Club A. Guemes</p>
@@ -1511,17 +1511,17 @@ const Banner = () => {
                                                             </div>
                                                             <div className="w-5">
                                                                 <Button className="list-btns" variant="light">
-                                                                    <span className="text-danger">C</span> 
+                                                                    <span className="text-danger">C</span>
                                                                 </Button>
                                                             </div>
                                                         </div>
                                                     </ListGroup.Item>
                                                     <ListGroup.Item>
                                                     <div className="w-100 d-flex">
-                                                            <div className="w-5">             
+                                                            <div className="w-5">
                                                                 <Button className="list-btns padding-none" variant="light">
-                                                                    <span className="">FT</span> 
-                                                                </Button>     
+                                                                    <span className="">FT</span>
+                                                                </Button>
                                                             </div>
                                                             <div className="w-40">
                                                                 <p className="text-white text-center mb-0">Real Potosi</p>
@@ -1538,17 +1538,17 @@ const Banner = () => {
                                                             </div>
                                                             <div className="w-5">
                                                                 <Button className="list-btns" variant="light">
-                                                                    <span className="text-success">B</span> 
+                                                                    <span className="text-success">B</span>
                                                                 </Button>
                                                             </div>
                                                         </div>
                                                     </ListGroup.Item>
                                                     <ListGroup.Item>
                                                     <div className="w-100 d-flex">
-                                                            <div className="w-5">             
+                                                            <div className="w-5">
                                                                 <Button className="list-btns padding-none" variant="light">
-                                                                    <span className="">FT</span> 
-                                                                </Button>     
+                                                                    <span className="">FT</span>
+                                                                </Button>
                                                             </div>
                                                             <div className="w-40">
                                                                 <p className="text-white text-center mb-0">San Jose</p>
@@ -1565,7 +1565,7 @@ const Banner = () => {
                                                             </div>
                                                             <div className="w-5">
                                                                 <Button className="list-btns" variant="light">
-                                                                    <span className="text-success">B</span> 
+                                                                    <span className="text-success">B</span>
                                                                 </Button>
                                                             </div>
                                                         </div>
@@ -1580,9 +1580,9 @@ const Banner = () => {
                                         </Card.Body>
                                     </Col>
                                 </Row>
-                             
-                                
-                                
+
+
+
                             </Accordion.Collapse>
                         </Card>
                         <Card>
@@ -1600,10 +1600,10 @@ const Banner = () => {
                                 <ListGroup variant="flush" className="acordion-body">
                                                     <ListGroup.Item>
                                                         <div className="w-100 d-flex">
-                                                            <div className="w-5">             
+                                                            <div className="w-5">
                                                                 <Button className="list-btns padding-none" variant="light">
-                                                                    <span className="">FT</span> 
-                                                                </Button>     
+                                                                    <span className="">FT</span>
+                                                                </Button>
                                                             </div>
                                                             <div className="w-40">
                                                                 <p className="text-white text-center mb-0">Central Norte</p>
@@ -1620,17 +1620,17 @@ const Banner = () => {
                                                             </div>
                                                             <div className="w-5">
                                                                 <Button className="list-btns" variant="light">
-                                                                    <span className="text-success">B</span> 
+                                                                    <span className="text-success">B</span>
                                                                 </Button>
                                                             </div>
                                                         </div>
                                                     </ListGroup.Item>
                                                     <ListGroup.Item>
                                                     <div className="w-100 d-flex">
-                                                            <div className="w-5">             
+                                                            <div className="w-5">
                                                                 <Button className="list-btns padding-none" variant="light">
-                                                                    <span className="">FT</span> 
-                                                                </Button>     
+                                                                    <span className="">FT</span>
+                                                                </Button>
                                                             </div>
                                                             <div className="w-40">
                                                                 <p className="text-white text-center mb-0">Crucero del Norte</p>
@@ -1647,17 +1647,17 @@ const Banner = () => {
                                                             </div>
                                                             <div className="w-5">
                                                                 <Button className="list-btns" variant="light">
-                                                                    <span className="text-success">B</span> 
+                                                                    <span className="text-success">B</span>
                                                                 </Button>
                                                             </div>
                                                         </div>
                                                     </ListGroup.Item>
                                                     <ListGroup.Item>
                                                     <div className="w-100 d-flex">
-                                                            <div className="w-5">             
+                                                            <div className="w-5">
                                                                 <Button className="list-btns padding-none" variant="light">
-                                                                    <span className="">FT</span> 
-                                                                </Button>     
+                                                                    <span className="">FT</span>
+                                                                </Button>
                                                             </div>
                                                             <div className="w-40">
                                                                 <p className="text-white text-center mb-0">Boca Unidos</p>
@@ -1674,17 +1674,17 @@ const Banner = () => {
                                                             </div>
                                                             <div className="w-5">
                                                                 <Button className="list-btns" variant="light">
-                                                                    <span className="text-success">B</span> 
+                                                                    <span className="text-success">B</span>
                                                                 </Button>
                                                             </div>
                                                         </div>
                                                     </ListGroup.Item>
                                                     <ListGroup.Item>
                                                     <div className="w-100 d-flex">
-                                                            <div className="w-5">             
+                                                            <div className="w-5">
                                                                 <Button className="list-btns padding-none" variant="light">
-                                                                    <span className="">FT</span> 
-                                                                </Button>     
+                                                                    <span className="">FT</span>
+                                                                </Button>
                                                             </div>
                                                             <div className="w-40">
                                                                 <p className="text-white text-center mb-0">Club A. Guemes</p>
@@ -1702,17 +1702,17 @@ const Banner = () => {
                                                             </div>
                                                             <div className="w-5">
                                                                 <Button className="list-btns" variant="light">
-                                                                    <span className="text-success">B</span> 
+                                                                    <span className="text-success">B</span>
                                                                 </Button>
                                                             </div>
                                                         </div>
                                                     </ListGroup.Item>
                                                     <ListGroup.Item>
                                                     <div className="w-100 d-flex">
-                                                            <div className="w-5">             
+                                                            <div className="w-5">
                                                                 <Button className="list-btns padding-none" variant="light">
-                                                                    <span className="">FT</span> 
-                                                                </Button>     
+                                                                    <span className="">FT</span>
+                                                                </Button>
                                                             </div>
                                                             <div className="w-40">
                                                                 <p className="text-white text-center mb-0">Real Potosi</p>
@@ -1729,17 +1729,17 @@ const Banner = () => {
                                                             </div>
                                                             <div className="w-5">
                                                                 <Button className="list-btns" variant="light">
-                                                                    <span className="text-success">B</span> 
+                                                                    <span className="text-success">B</span>
                                                                 </Button>
                                                             </div>
                                                         </div>
                                                     </ListGroup.Item>
                                                     <ListGroup.Item>
                                                     <div className="w-100 d-flex">
-                                                            <div className="w-5">             
+                                                            <div className="w-5">
                                                                 <Button className="list-btns padding-none" variant="light">
-                                                                    <span className="">FT</span> 
-                                                                </Button>     
+                                                                    <span className="">FT</span>
+                                                                </Button>
                                                             </div>
                                                             <div className="w-40">
                                                                 <p className="text-white text-center mb-0">San Jose</p>
@@ -1756,17 +1756,17 @@ const Banner = () => {
                                                             </div>
                                                             <div className="w-5">
                                                                 <Button className="list-btns" variant="light">
-                                                                    <span className="text-success">B</span> 
+                                                                    <span className="text-success">B</span>
                                                                 </Button>
                                                             </div>
                                                         </div>
                                                     </ListGroup.Item>
                                                     <ListGroup.Item>
                                                     <div className="w-100 d-flex">
-                                                            <div className="w-5">             
+                                                            <div className="w-5">
                                                                 <Button className="list-btns padding-none" variant="light">
-                                                                    <span className="">FT</span> 
-                                                                </Button>     
+                                                                    <span className="">FT</span>
+                                                                </Button>
                                                             </div>
                                                             <div className="w-40">
                                                                 <p className="text-white text-center mb-0">San Jose</p>
@@ -1783,17 +1783,17 @@ const Banner = () => {
                                                             </div>
                                                             <div className="w-5">
                                                                 <Button className="list-btns" variant="light">
-                                                                    <span className="text-success">B</span> 
+                                                                    <span className="text-success">B</span>
                                                                 </Button>
                                                             </div>
                                                         </div>
                                                     </ListGroup.Item>
                                                     <ListGroup.Item>
                                                     <div className="w-100 d-flex">
-                                                            <div className="w-5">             
+                                                            <div className="w-5">
                                                                 <Button className="list-btns padding-none" variant="light">
-                                                                    <span className="">FT</span> 
-                                                                </Button>     
+                                                                    <span className="">FT</span>
+                                                                </Button>
                                                             </div>
                                                             <div className="w-40">
                                                                 <p className="text-white text-center mb-0">San Jose</p>
@@ -1810,143 +1810,7 @@ const Banner = () => {
                                                             </div>
                                                             <div className="w-5">
                                                                 <Button className="list-btns" variant="light">
-                                                                    <span className="text-success">B</span> 
-                                                                </Button>
-                                                            </div>
-                                                        </div>
-                                                    </ListGroup.Item>
-
-                                                    <ListGroup.Item>
-                                                    <div className="w-100 d-flex">
-                                                            <div className="w-5">             
-                                                                <Button className="list-btns padding-none" variant="light">
-                                                                    <span className="">FT</span> 
-                                                                </Button>     
-                                                            </div>
-                                                            <div className="w-40">
-                                                                <p className="text-white text-center mb-0">San Jose</p>
-                                                            </div>
-                                                            <div className="w-10">
-                                                                <div className="d-flex justify-content-center">
-                                                                    <span className="text-white ml-1">0</span>
-                                                                    <span className="text-white">:</span>
-                                                                    <span className="text-white mr-1">3</span>
-                                                                </div>
-                                                            </div>
-                                                            <div className="w-40">
-                                                                <p className="text-white text-center mb-0">Guabira</p>
-                                                            </div>
-                                                            <div className="w-5">
-                                                                <Button className="list-btns" variant="light">
-                                                                    <span className="text-success">B</span> 
-                                                                </Button>
-                                                            </div>
-                                                        </div>
-                                                    </ListGroup.Item>
-                                                    <ListGroup.Item>
-                                                    <div className="w-100 d-flex">
-                                                            <div className="w-5">             
-                                                                <Button className="list-btns padding-none" variant="light">
-                                                                    <span className="">FT</span> 
-                                                                </Button>     
-                                                            </div>
-                                                            <div className="w-40">
-                                                                <p className="text-white text-center mb-0">San Jose</p>
-                                                            </div>
-                                                            <div className="w-10">
-                                                                <div className="d-flex justify-content-center">
-                                                                    <span className="text-white ml-1">0</span>
-                                                                    <span className="text-white">:</span>
-                                                                    <span className="text-white mr-1">3</span>
-                                                                </div>
-                                                            </div>
-                                                            <div className="w-40">
-                                                                <p className="text-white text-center mb-0">Guabira</p>
-                                                            </div>
-                                                            <div className="w-5">
-                                                                <Button className="list-btns" variant="light">
-                                                                    <span className="text-success">B</span> 
-                                                                </Button>
-                                                            </div>
-                                                        </div>
-                                                    </ListGroup.Item>
-                                                    <ListGroup.Item>
-                                                    <div className="w-100 d-flex">
-                                                            <div className="w-5">             
-                                                                <Button className="list-btns padding-none" variant="light">
-                                                                    <span className="">FT</span> 
-                                                                </Button>     
-                                                            </div>
-                                                            <div className="w-40">
-                                                                <p className="text-white text-center mb-0">San Jose</p>
-                                                            </div>
-                                                            <div className="w-10">
-                                                                <div className="d-flex justify-content-center">
-                                                                    <span className="text-white ml-1">0</span>
-                                                                    <span className="text-white">:</span>
-                                                                    <span className="text-white mr-1">3</span>
-                                                                </div>
-                                                            </div>
-                                                            <div className="w-40">
-                                                                <p className="text-white text-center mb-0">Guabira</p>
-                                                            </div>
-                                                            <div className="w-5">
-                                                                <Button className="list-btns" variant="light">
-                                                                    <span className="text-success">B</span> 
-                                                                </Button>
-                                                            </div>
-                                                        </div>
-                                                    </ListGroup.Item>
-                                                    <ListGroup.Item>
-                                                    <div className="w-100 d-flex">
-                                                            <div className="w-5">             
-                                                                <Button className="list-btns padding-none" variant="light">
-                                                                    <span className="">FT</span> 
-                                                                </Button>     
-                                                            </div>
-                                                            <div className="w-40">
-                                                                <p className="text-white text-center mb-0">San Jose</p>
-                                                            </div>
-                                                            <div className="w-10">
-                                                                <div className="d-flex justify-content-center">
-                                                                    <span className="text-white ml-1">0</span>
-                                                                    <span className="text-white">:</span>
-                                                                    <span className="text-white mr-1">3</span>
-                                                                </div>
-                                                            </div>
-                                                            <div className="w-40">
-                                                                <p className="text-white text-center mb-0">Guabira</p>
-                                                            </div>
-                                                            <div className="w-5">
-                                                                <Button className="list-btns" variant="light">
-                                                                    <span className="text-success">B</span> 
-                                                                </Button>
-                                                            </div>
-                                                        </div>
-                                                    </ListGroup.Item>
-                                                    <ListGroup.Item>
-                                                    <div className="w-100 d-flex">
-                                                            <div className="w-5">             
-                                                                <Button className="list-btns padding-none" variant="light">
-                                                                    <span className="">FT</span> 
-                                                                </Button>     
-                                                            </div>
-                                                            <div className="w-40">
-                                                                <p className="text-white text-center mb-0">San Jose</p>
-                                                            </div>
-                                                            <div className="w-10">
-                                                                <div className="d-flex justify-content-center">
-                                                                    <span className="text-white ml-1">0</span>
-                                                                    <span className="text-white">:</span>
-                                                                    <span className="text-white mr-1">3</span>
-                                                                </div>
-                                                            </div>
-                                                            <div className="w-40">
-                                                                <p className="text-white text-center mb-0">Guabira</p>
-                                                            </div>
-                                                            <div className="w-5">
-                                                                <Button className="list-btns" variant="light">
-                                                                    <span className="text-success">B</span> 
+                                                                    <span className="text-success">B</span>
                                                                 </Button>
                                                             </div>
                                                         </div>
@@ -1954,10 +1818,10 @@ const Banner = () => {
 
                                                     <ListGroup.Item>
                                                     <div className="w-100 d-flex">
-                                                            <div className="w-5">             
+                                                            <div className="w-5">
                                                                 <Button className="list-btns padding-none" variant="light">
-                                                                    <span className="">FT</span> 
-                                                                </Button>     
+                                                                    <span className="">FT</span>
+                                                                </Button>
                                                             </div>
                                                             <div className="w-40">
                                                                 <p className="text-white text-center mb-0">San Jose</p>
@@ -1974,17 +1838,17 @@ const Banner = () => {
                                                             </div>
                                                             <div className="w-5">
                                                                 <Button className="list-btns" variant="light">
-                                                                    <span className="text-success">B</span> 
+                                                                    <span className="text-success">B</span>
                                                                 </Button>
                                                             </div>
                                                         </div>
                                                     </ListGroup.Item>
                                                     <ListGroup.Item>
                                                     <div className="w-100 d-flex">
-                                                            <div className="w-5">             
+                                                            <div className="w-5">
                                                                 <Button className="list-btns padding-none" variant="light">
-                                                                    <span className="">FT</span> 
-                                                                </Button>     
+                                                                    <span className="">FT</span>
+                                                                </Button>
                                                             </div>
                                                             <div className="w-40">
                                                                 <p className="text-white text-center mb-0">San Jose</p>
@@ -2001,17 +1865,17 @@ const Banner = () => {
                                                             </div>
                                                             <div className="w-5">
                                                                 <Button className="list-btns" variant="light">
-                                                                    <span className="text-success">B</span> 
+                                                                    <span className="text-success">B</span>
                                                                 </Button>
                                                             </div>
                                                         </div>
                                                     </ListGroup.Item>
                                                     <ListGroup.Item>
                                                     <div className="w-100 d-flex">
-                                                            <div className="w-5">             
+                                                            <div className="w-5">
                                                                 <Button className="list-btns padding-none" variant="light">
-                                                                    <span className="">FT</span> 
-                                                                </Button>     
+                                                                    <span className="">FT</span>
+                                                                </Button>
                                                             </div>
                                                             <div className="w-40">
                                                                 <p className="text-white text-center mb-0">San Jose</p>
@@ -2028,17 +1892,17 @@ const Banner = () => {
                                                             </div>
                                                             <div className="w-5">
                                                                 <Button className="list-btns" variant="light">
-                                                                    <span className="text-success">B</span> 
+                                                                    <span className="text-success">B</span>
                                                                 </Button>
                                                             </div>
                                                         </div>
                                                     </ListGroup.Item>
                                                     <ListGroup.Item>
                                                     <div className="w-100 d-flex">
-                                                            <div className="w-5">             
+                                                            <div className="w-5">
                                                                 <Button className="list-btns padding-none" variant="light">
-                                                                    <span className="">FT</span> 
-                                                                </Button>     
+                                                                    <span className="">FT</span>
+                                                                </Button>
                                                             </div>
                                                             <div className="w-40">
                                                                 <p className="text-white text-center mb-0">San Jose</p>
@@ -2055,7 +1919,143 @@ const Banner = () => {
                                                             </div>
                                                             <div className="w-5">
                                                                 <Button className="list-btns" variant="light">
-                                                                    <span className="text-success">B</span> 
+                                                                    <span className="text-success">B</span>
+                                                                </Button>
+                                                            </div>
+                                                        </div>
+                                                    </ListGroup.Item>
+                                                    <ListGroup.Item>
+                                                    <div className="w-100 d-flex">
+                                                            <div className="w-5">
+                                                                <Button className="list-btns padding-none" variant="light">
+                                                                    <span className="">FT</span>
+                                                                </Button>
+                                                            </div>
+                                                            <div className="w-40">
+                                                                <p className="text-white text-center mb-0">San Jose</p>
+                                                            </div>
+                                                            <div className="w-10">
+                                                                <div className="d-flex justify-content-center">
+                                                                    <span className="text-white ml-1">0</span>
+                                                                    <span className="text-white">:</span>
+                                                                    <span className="text-white mr-1">3</span>
+                                                                </div>
+                                                            </div>
+                                                            <div className="w-40">
+                                                                <p className="text-white text-center mb-0">Guabira</p>
+                                                            </div>
+                                                            <div className="w-5">
+                                                                <Button className="list-btns" variant="light">
+                                                                    <span className="text-success">B</span>
+                                                                </Button>
+                                                            </div>
+                                                        </div>
+                                                    </ListGroup.Item>
+
+                                                    <ListGroup.Item>
+                                                    <div className="w-100 d-flex">
+                                                            <div className="w-5">
+                                                                <Button className="list-btns padding-none" variant="light">
+                                                                    <span className="">FT</span>
+                                                                </Button>
+                                                            </div>
+                                                            <div className="w-40">
+                                                                <p className="text-white text-center mb-0">San Jose</p>
+                                                            </div>
+                                                            <div className="w-10">
+                                                                <div className="d-flex justify-content-center">
+                                                                    <span className="text-white ml-1">0</span>
+                                                                    <span className="text-white">:</span>
+                                                                    <span className="text-white mr-1">3</span>
+                                                                </div>
+                                                            </div>
+                                                            <div className="w-40">
+                                                                <p className="text-white text-center mb-0">Guabira</p>
+                                                            </div>
+                                                            <div className="w-5">
+                                                                <Button className="list-btns" variant="light">
+                                                                    <span className="text-success">B</span>
+                                                                </Button>
+                                                            </div>
+                                                        </div>
+                                                    </ListGroup.Item>
+                                                    <ListGroup.Item>
+                                                    <div className="w-100 d-flex">
+                                                            <div className="w-5">
+                                                                <Button className="list-btns padding-none" variant="light">
+                                                                    <span className="">FT</span>
+                                                                </Button>
+                                                            </div>
+                                                            <div className="w-40">
+                                                                <p className="text-white text-center mb-0">San Jose</p>
+                                                            </div>
+                                                            <div className="w-10">
+                                                                <div className="d-flex justify-content-center">
+                                                                    <span className="text-white ml-1">0</span>
+                                                                    <span className="text-white">:</span>
+                                                                    <span className="text-white mr-1">3</span>
+                                                                </div>
+                                                            </div>
+                                                            <div className="w-40">
+                                                                <p className="text-white text-center mb-0">Guabira</p>
+                                                            </div>
+                                                            <div className="w-5">
+                                                                <Button className="list-btns" variant="light">
+                                                                    <span className="text-success">B</span>
+                                                                </Button>
+                                                            </div>
+                                                        </div>
+                                                    </ListGroup.Item>
+                                                    <ListGroup.Item>
+                                                    <div className="w-100 d-flex">
+                                                            <div className="w-5">
+                                                                <Button className="list-btns padding-none" variant="light">
+                                                                    <span className="">FT</span>
+                                                                </Button>
+                                                            </div>
+                                                            <div className="w-40">
+                                                                <p className="text-white text-center mb-0">San Jose</p>
+                                                            </div>
+                                                            <div className="w-10">
+                                                                <div className="d-flex justify-content-center">
+                                                                    <span className="text-white ml-1">0</span>
+                                                                    <span className="text-white">:</span>
+                                                                    <span className="text-white mr-1">3</span>
+                                                                </div>
+                                                            </div>
+                                                            <div className="w-40">
+                                                                <p className="text-white text-center mb-0">Guabira</p>
+                                                            </div>
+                                                            <div className="w-5">
+                                                                <Button className="list-btns" variant="light">
+                                                                    <span className="text-success">B</span>
+                                                                </Button>
+                                                            </div>
+                                                        </div>
+                                                    </ListGroup.Item>
+                                                    <ListGroup.Item>
+                                                    <div className="w-100 d-flex">
+                                                            <div className="w-5">
+                                                                <Button className="list-btns padding-none" variant="light">
+                                                                    <span className="">FT</span>
+                                                                </Button>
+                                                            </div>
+                                                            <div className="w-40">
+                                                                <p className="text-white text-center mb-0">San Jose</p>
+                                                            </div>
+                                                            <div className="w-10">
+                                                                <div className="d-flex justify-content-center">
+                                                                    <span className="text-white ml-1">0</span>
+                                                                    <span className="text-white">:</span>
+                                                                    <span className="text-white mr-1">3</span>
+                                                                </div>
+                                                            </div>
+                                                            <div className="w-40">
+                                                                <p className="text-white text-center mb-0">Guabira</p>
+                                                            </div>
+                                                            <div className="w-5">
+                                                                <Button className="list-btns" variant="light">
+                                                                    <span className="text-success">B</span>
                                                                 </Button>
                                                             </div>
                                                         </div>
@@ -2066,18 +2066,18 @@ const Banner = () => {
 
                             </Accordion.Collapse>
                         </Card>
-                    
-    
+
+
 
                     </Accordion>
-                
+
                 </Tab>
             </Tabs>
-     
+
             </Tab.Container>
         </div>
     )
-} 
+}
 
 
 export default Banner
