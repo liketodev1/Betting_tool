@@ -9,7 +9,7 @@
     "@testing-library/user-event": "^7.1.2",
     "antd": "^3.26.11",
     "bootstrap": "^4.4.1",
-    "node-sass": "^4.13.1",
+    "node-sass": "^7.0.0",
     "react-bootstrap": "^1.0.0-beta.16",
     "react-fast-compare": "^3.0.1",
     "react-redux": "^7.2.0",
